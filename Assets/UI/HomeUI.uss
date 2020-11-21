@@ -1,0 +1,29 @@
+.root {
+    flex-grow: 1;
+    justify-content: space-between;
+    background-color: rgba(6, 206, 255, 0.27);
+}
+
+.top {
+    align-items: center;
+}
+
+.bottom {
+    align-items: center;
+    justify-content: center;
+}
+
+.score {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.play-btn {
+    width: 20%;
+    height: 20%;
+    background-image: url('/Assets/UI/play-icon.png');
+    width: 100px;
+    height: 100px;
+}

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="HomeUI.uss" />
+    <ui:VisualElement class="root" style="justify-content: space-around; height: auto; width: auto;">
+        <ui:VisualElement class="top">
+            <ui:Label text="Score: 0&#10;" display-tooltip-when-elided="True" class="score" />
+        </ui:VisualElement>
+        <ui:VisualElement class="bottom">
+            <ui:VisualElement name="play-btn" class="play-btn" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
