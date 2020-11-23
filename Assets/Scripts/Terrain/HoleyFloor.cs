@@ -6,11 +6,11 @@ using System.Linq;
 
 // responsible of creating a Holey floor ( floor with holes)
 
-[DisallowMultipleComponent, ExecuteAlways]
-public class HoleyFloorGenerator : MonoBehaviour
+[DisallowMultipleComponent]
+public class HoleyFloor : MonoBehaviour
 {
   [SerializeField] Transform floor;
-  [SerializeField] TerrainGeneratorConfig config;
+  [SerializeField] TileConfig config;
 
   void Start()
   {
@@ -56,7 +56,7 @@ public class HoleyFloorGenerator : MonoBehaviour
     int totalHolesWidth = holes.Sum();
 
     float remainingSpace = config.wallDistance - totalHolesWidth;
-    float startX = config.GetLeftWallInnerSideX();
+    float startX = config.leftWallInnerSideX;
     for (int i = 0; i <= holes.Count; i++)
     {
       // so here we get a random width and then scale the floor tile with that value
@@ -78,41 +78,17 @@ public class HoleyFloorGenerator : MonoBehaviour
 
   Transform GenerateFloorTile(int tileWidth, float spawnX)
   {
-    Transform floorTile = InstantiateFloor();
+    Transform floorTile = Instantiate(floor, transform);
     Vector3 tempScale = floorTile.localScale;
-    Vector3 tempPosition = floorTile.position;
+    Vector3 tempPosition = floorTile.localPosition;
     floorTile.localScale = new Vector3(tileWidth, tempScale.y, tempScale.z);
-    floorTile.position = new Vector3(
+    floorTile.localPosition = new Vector3(
       // adding half the width because it's relative to center
       spawnX + (tileWidth / 2),
-      spawnY,
+      tempPosition.y,
       tempPosition.z
     );
     return floorTile;
   }
-
-  void GenerateSideFloors(float spawnY)
-  {
-    Transform leftTile = InstantiateFloor();
-    Transform rightTile = InstantiateFloor();
-    Vector3 leftPosition = leftTile.position;
-    Vector3 rightPosition = rightTile.position;
-    float leftWallSideX = wallLeft.position.x - wallLeft.localScale.x / 2;
-    float rightWallSideX = wallRight.position.x + wallRight.localScale.x / 2;
-    leftPosition.x = leftWallSideX - (leftTile.localScale.x / 2);
-    rightPosition.x = rightWallSideX + (rightTile.localScale.x / 2);
-    leftPosition.y = spawnY;
-    rightPosition.y = spawnY;
-    leftTile.position = leftPosition;
-    rightTile.position = rightPosition;
-  }
-
-  Transform InstantiateFloor()
-  {
-    Transform floorTile = Instantiate(floor);
-    floorTile.SetParent(transform);
-    return floorTile;
-  }
-
 
 }
