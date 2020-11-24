@@ -19,7 +19,6 @@ public class Tile : MonoBehaviour
   {
     foreach (float y in config.floorsY)
     {
-      print(y);
       Instantiate(
         holeyFloor,
         new Vector3(0, y + transform.position.y, 0),

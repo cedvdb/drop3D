@@ -45,7 +45,6 @@ public class BaseTile : MonoBehaviour
 
   void GenerateSideFloors()
   {
-    print("generating side floors");
     foreach (float y in config.floorsY)
     {
       Transform leftTile = Instantiate(floor, transform);
@@ -54,7 +53,6 @@ public class BaseTile : MonoBehaviour
       rightTile.name = "Right Side Floor";
       Vector3 leftPosition = leftTile.localPosition;
       Vector3 rightPosition = rightTile.localPosition;
-      print(leftPosition.y);
       leftPosition.x = config.leftWallOuterSideX - (leftTile.localScale.x / 2);
       rightPosition.x = config.rightWallOuterSideX + (rightTile.localScale.x / 2);
       leftPosition.y = y;

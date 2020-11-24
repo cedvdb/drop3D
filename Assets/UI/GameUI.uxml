@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="GameUI.uss" />
+    <ui:VisualElement style="align-items: center; justify-content: flex-end;">
+        <ui:Label text="Score: 0" display-tooltip-when-elided="True" name="score-label" style="color: rgb(255, 255, 255); -unity-font-style: normal; font-size: 15%;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -9,8 +9,8 @@ using System.Collections.Generic;
 public class TileConfig : ScriptableObject
 {
   public Vector3 tileSize = new Vector3(50, 40, 1);
-  public Vector3 floorSize = new Vector3(1, 1, 3);
-  public Vector3 wallSize = new Vector3(1, 1, 3);
+  public Vector3 floorTileSize = new Vector3(1, 1, 3);
+  public Vector3 wallTileSize = new Vector3(1, 1, 3);
   public int floorsPerTile = 3;
   // vertical walls distance
   public float wallDistance = 40f;
@@ -22,6 +22,7 @@ public class TileConfig : ScriptableObject
 
   // computed
   // where to place floors on the y axis
+  public float floorHeight;
   public List<float> floorsY;
   [HideInInspector] public float leftWallX;
   [HideInInspector] public float rightWallX;
@@ -51,8 +52,8 @@ public class TileConfig : ScriptableObject
   private void ComputeFloorsY()
   {
     floorsY = new List<float>();
-    float floorHeight = tileSize.y / floorsPerTile;
-    float startTileY = tileSize.y / 2 + floorSize.y / 2;
+    floorHeight = tileSize.y / floorsPerTile;
+    float startTileY = tileSize.y / 2 + floorTileSize.y / 2;
     float y = startTileY - floorHeight;
     for (int i = 0; i < floorsPerTile; i++)
     {

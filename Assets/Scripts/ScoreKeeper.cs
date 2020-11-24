@@ -5,9 +5,12 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class ScoreKeeper : MonoBehaviour
 {
+  [SerializeField] TileConfig tileConfig;
   [HideInInspector]
-  public int score = 0;
-  int startScoreY = 5;
+  public static int score = 0;
+  private int beginningOffset = 10;
+  public delegate void ScoreChangeEventHandler(int score);
+  public event ScoreChangeEventHandler ScoreChanged;
 
   void Start()
   {
@@ -26,6 +29,20 @@ public class ScoreKeeper : MonoBehaviour
   void ComputeScore()
   {
     int currentY = (int)transform.position.y;
-    score = startScoreY + Mathf.Abs(currentY);
+    int newScore = (int)((-currentY + beginningOffset) / tileConfig.floorHeight);
+    bool hasChanged = newScore != score;
+    score = newScore;
+    if (hasChanged)
+    {
+      OnScoreChanged();
+    }
+  }
+
+  protected virtual void OnScoreChanged()
+  {
+    if (ScoreChanged != null)
+    {
+      ScoreChanged(score);
+    }
   }
 }

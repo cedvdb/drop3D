@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Eater : MonoBehaviour
 {
-  float speed = 5;
+  [SerializeField] float speed = 5;
 
   void Update()
   {
